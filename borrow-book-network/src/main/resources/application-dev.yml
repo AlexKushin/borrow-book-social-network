@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/borrow_book_social_network
+    url: jdbc:postgresql://localhost:5433/borrow_book_social_network
     username: postgres
-    password: postgres
+    password: password
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: false
     properties:
       hibernate:
@@ -29,8 +29,13 @@ spring:
         timeout: 3000
         writetimeout: 5000
 
-  application:
-    security:
-      jwt:
-        secret-key: e77fcc7721e7f825b9cd3cfbffb57811dd2b3a79692f124b298e6d20de1797264f92595bea6d78158f6a4fd51909c2ff5d05b2ab8b7567b4de416e8018322b99
-        expiration: 86400000
+application:
+  security:
+    jwt:
+      secret-key: e77fcc7721e7f825b9cd3cfbffb57811dd2b3a79692f124b298e6d20de1797264f92595bea6d78158f6a4fd51909c2ff5d05b2ab8b7567b4de416e8018322b99
+      expiration: 86400000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+server:
+  port: 8088
