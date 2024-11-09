@@ -1,5 +1,7 @@
 package com.okushyn.book.user;
 
+import com.okushyn.book.book.Book;
+import com.okushyn.book.history.BookTransactionHistory;
 import com.okushyn.book.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -43,6 +45,12 @@ public class User implements UserDetails, Principal {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
@@ -58,7 +66,7 @@ public class User implements UserDetails, Principal {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles.stream().map(role-> new SimpleGrantedAuthority(role.getName()))
+        return this.roles.stream().map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
     }
 
