@@ -34,7 +34,7 @@ public class Book extends BaseEntity {
 
     private boolean archived;
 
-    private boolean sharable;
+    private boolean shareable;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
