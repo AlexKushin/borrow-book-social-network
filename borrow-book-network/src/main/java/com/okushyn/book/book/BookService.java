@@ -29,7 +29,7 @@ public class BookService {
     private final BookRepository bookRepository;
     private final BookTransactionalHistoryRepository transactionHistoryRepository;
     private final BookMapper bookMapper;
-    private  final FileStorageService fileStorageService;
+    private final FileStorageService fileStorageService;
 
 
     public Integer save(BookRequest bookRequest, Authentication connectedUser) {
@@ -217,7 +217,7 @@ public class BookService {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("No book found with the ID: " + bookId));
         User user = ((User) connectedUser.getPrincipal());
-        var bookCover = fileStorageService.saveFile(file, book, user.getId());
+        var bookCover = fileStorageService.saveFile(file, user.getId());
         book.setBookCover(bookCover);
         bookRepository.save(book);
     }

@@ -1,6 +1,6 @@
 package com.okushyn.book.file;
 
-import lombok.NonNull;
+import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,13 +24,13 @@ public class FileStorageService {
     @Value("${application.file.upload.photos-output-path}")
     private String fileUploadPath;
 
-    public String saveFile(@NonNull MultipartFile sourceFile,
-                           @NonNull Integer userId) {
+    public String saveFile(@Nonnull MultipartFile sourceFile,
+                           @Nonnull Integer userId) {
         final String fileUploadSubPath = "users" + separator + userId;
         return uploadFile(sourceFile, fileUploadSubPath);
     }
 
-    private String uploadFile(@NonNull MultipartFile sourceFile, @NonNull String fileUploadSubPath) {
+    private String uploadFile(@Nonnull MultipartFile sourceFile, @Nonnull String fileUploadSubPath) {
 
         final String finalUploadPath = fileUploadPath + separator + fileUploadSubPath;
         File targetFolder = new File(finalUploadPath);
