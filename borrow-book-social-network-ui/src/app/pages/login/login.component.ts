@@ -4,6 +4,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../services/services/authentication.service";
+import {TokenService} from "../../services/token/token.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private tokenService: TokenService
   ) {
   }
 
@@ -34,12 +36,13 @@ export class LoginComponent {
         body: this.authRequest
       }
     ).subscribe({
-      next: () => {
-        this.router.navigate(['books'])
+      next: (res) => {
+        this.tokenService.token = res.token as string;
+        this.router.navigate(['books']);
       },
       error: (err) => {
         console.log(err);
-        if(err.error.validationErrors){
+        if (err.error.validationErrors) {
           this.errorMessage = err.error.validationErrors
         } else {
           this.errorMessage.push(err.error.businessErrorDescription)
