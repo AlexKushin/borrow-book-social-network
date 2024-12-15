@@ -2,11 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../../services/services/book.service";
 import {Router} from "@angular/router";
 import {PageResponseBookResponse} from "../../../services/models/page-response-book-response";
+import {NgForOf} from "@angular/common";
+import {BookCardComponent} from "../../components/book-card/book-card.component";
 
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [],
+  imports: [
+    NgForOf,
+    BookCardComponent
+  ],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.scss'
 })
