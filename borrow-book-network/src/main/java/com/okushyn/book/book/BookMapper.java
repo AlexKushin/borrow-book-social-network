@@ -11,10 +11,11 @@ public class BookMapper {
         return Book.builder()
                 .id(bookRequest.id())
                 .title(bookRequest.title())
+                .isbn(bookRequest.isbn())
                 .authorName(bookRequest.authorName())
                 .synopsis(bookRequest.synopsis())
                 .archived(false)
-                .shareable(bookRequest.sharable())
+                .shareable(bookRequest.shareable())
                 .build();
     }
 

@@ -28,7 +28,7 @@ public class FeedbackService {
         Book book = bookRepository.findById(request.bookId())
                 .orElseThrow(() -> new EntityNotFoundException("No book found with the ID: " + request.bookId()));
         if (book.isArchived() || !book.isShareable()) {
-            throw new OperationNotPermittedException("You cannot give a feedback for archived or not sharable");
+            throw new OperationNotPermittedException("You cannot give a feedback for archived or not shareable");
         }
         User user = ((User) connectedUser.getPrincipal());
         if (Objects.equals(book.getOwner().getId(), user.getId())) {
