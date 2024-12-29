@@ -26,12 +26,13 @@ public class FileStorageService {
 
     public String saveFile(@Nonnull MultipartFile sourceFile,
                            @Nonnull Integer userId) {
+        //final String fileUploadSubPath = "users" + separator + userId; -> The file separator is \ on Windows and / on macOS and Unix-based operating systems.
         final String fileUploadSubPath = "users" + separator + userId;
         return uploadFile(sourceFile, fileUploadSubPath);
     }
 
     private String uploadFile(@Nonnull MultipartFile sourceFile, @Nonnull String fileUploadSubPath) {
-
+        // The file separator is \ on Windows and / on macOS and Unix-based operating systems.
         final String finalUploadPath = fileUploadPath + separator + fileUploadSubPath;
         File targetFolder = new File(finalUploadPath);
         if (!targetFolder.exists()) {
@@ -44,6 +45,7 @@ public class FileStorageService {
 
         final String fileExtension = getFileExtension(sourceFile.getOriginalFilename());
         // targetFilePath example = ./upload/users/1/1253461524.jpg
+        //The file separator is \ on Windows and / on macOS and Unix-based operating systems.
         String targetFilePath = finalUploadPath + separator + currentTimeMillis() + "." + fileExtension;
         Path targetPath = Paths.get(targetFilePath);
         try {
