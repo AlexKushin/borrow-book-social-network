@@ -44,7 +44,7 @@ export class ManageBookComponent implements OnInit {
             authorName: book.authorName as string,
             isbn: book.isbn as string,
             synopsis: book.synopsis as string,
-            sharable: book.shareable
+            shareable: book.shareable
 
           }
           if (book.cover) {
@@ -68,10 +68,15 @@ export class ManageBookComponent implements OnInit {
   }
 
   saveBook() {
+    console.log('Book Request:')
+    console.log(this.bookRequest)
     this.bookService.saveBook({
       body: this.bookRequest
     }).subscribe({
       next: (bookId) => {
+        //if(this.selectedBookCover){
+        // upload if cover exists
+        // }
         this.bookService.uploadBookCoverPicture({
           'book-id': bookId,
           body: {

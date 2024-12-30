@@ -6,7 +6,7 @@ export interface BookRequest {
   authorName: string;
   id?: number;
   isbn: string;
-  sharable?: boolean;
+  shareable?: boolean;
   synopsis: string;
   title: string;
 }
