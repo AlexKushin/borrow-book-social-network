@@ -8,10 +8,8 @@
     - [Backend (book-social-network)](#backend-book-social-network)
     - [Frontend (book-social-network-ui)](#frontend-book-social-network-ui)
 - [Learning Objectives](#learning-objectives)
-- [License](#license)
-- [Getting Started](#getting-started)
-- [Contributors](#contributors)
-- [Acknowledgments](#acknowledgments)
+
+
 
 ## Overview
 
@@ -84,3 +82,7 @@ By following this project, students will learn:
 - Implementing business requirements and handling business exceptions
 - Dockerizing the infrastructure
 - CI/CD pipeline & deployment
+
+## Thanks to Ali Bouali for sharing this project
+
+ [Ali Bouali](https://github.com/ali-bouali)
