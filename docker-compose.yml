@@ -1,10 +1,10 @@
 services:
   postgres:
+    image: postgres:16
     container_name: postgres-sql-bbsn
-    image: postgres
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: password
       PGDATA: var/lib/postgresql/data
       POSTGRES_DB: borrow_book_social_network
     volumes:
@@ -20,6 +20,35 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
+
+
+  keycloak:
+    container_name: keycloak-bbsn
+    image: quay.io/keycloak/keycloak:24.0.2
+    ports:
+      - 9090:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      - spring-demo
+    command:
+      - "start-dev"
+
+  bsn-api:
+    container_name: bsn-api
+    image: bsn/bsn:1.0.0
+    ports:
+      - 8088:8088
+    networks:
+      - spring-demo
+    depends_on:
+      - postgres
+
+
+
+
+
 
 networks:
   spring-demo:
