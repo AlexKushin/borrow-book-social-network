@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.okushyn</groupId>
 	<artifactId>borrow-book-network</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.3</version>
 	<name>borrow-book-network-api</name>
 	<description>Spring Boot project for book borrowing social network</description>
 	<url/>
