@@ -10,7 +10,7 @@ RUN mvn clean package -DskipTests
 FROM amazoncorretto:17
 #define fer things (default value of application arguments)
 ARG PROFILE=dev
-ARG APP_VERSION=1.0.0
+ARG APP_VERSION=1.0.3
 
 WORKDIR /app
 
