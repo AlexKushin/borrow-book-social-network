@@ -2,7 +2,7 @@ package com.okushyn.book.history;
 
 import com.okushyn.book.book.Book;
 import com.okushyn.book.common.BaseEntity;
-import com.okushyn.book.user.User;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,11 +21,10 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class BookTransactionHistory extends BaseEntity {
 
-    //user relationship
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    //book relationship
+
+    @Column(name = "user_id")
+    private String userId;
+
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;

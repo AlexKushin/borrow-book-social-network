@@ -23,7 +23,7 @@ public class BookController {
             @Valid @RequestBody BookRequest bookRequest,
             Authentication connectedUser
     ) {
-        return ResponseEntity.ok(bookService.save(bookRequest, connectedUser));
+        return ResponseEntity.ok(bookService.save(bookRequest));
     }
 
     @GetMapping("{book-id}")

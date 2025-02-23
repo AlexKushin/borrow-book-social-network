@@ -25,7 +25,7 @@ public class FileStorageService {
     private String fileUploadPath;
 
     public String saveFile(@Nonnull MultipartFile sourceFile,
-                           @Nonnull Integer userId) {
+                           @Nonnull String userId) {
         //final String fileUploadSubPath = "users" + separator + userId; -> The file separator is \ on Windows and / on macOS and Unix-based operating systems.
         final String fileUploadSubPath = "users" + separator + userId;
         return uploadFile(sourceFile, fileUploadSubPath);
@@ -50,7 +50,7 @@ public class FileStorageService {
         Path targetPath = Paths.get(targetFilePath);
         try {
             Files.write(targetPath, sourceFile.getBytes());
-            log.info("File saved to " + targetFilePath);
+            log.info("File saved to {}", targetFilePath);
             return targetFilePath;
         } catch (IOException e) {
             log.error("File was not saved", e);

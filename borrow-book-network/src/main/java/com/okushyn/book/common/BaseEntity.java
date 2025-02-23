@@ -38,10 +38,10 @@ public class BaseEntity {
 
     @CreatedBy
     @Column(nullable = false, updatable = false)
-    private Integer createdBy; //owner user id
+    private String createdBy; //owner user id
 
     @LastModifiedBy
     @Column(insertable = false)
-    private Integer lastModifiedBy;
+    private String lastModifiedBy;
 
 }

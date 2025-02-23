@@ -4,7 +4,6 @@ import com.okushyn.book.book.Book;
 import com.okushyn.book.book.BookRepository;
 import com.okushyn.book.common.PageResponse;
 import com.okushyn.book.exception.OperationNotPermittedException;
-import com.okushyn.book.user.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -30,8 +29,7 @@ public class FeedbackService {
         if (book.isArchived() || !book.isShareable()) {
             throw new OperationNotPermittedException("You cannot give a feedback for archived or not shareable");
         }
-        User user = ((User) connectedUser.getPrincipal());
-        if (Objects.equals(book.getOwner().getId(), user.getId())) {
+        if (Objects.equals(book.getCreatedBy(), connectedUser.getName())) {
             throw new OperationNotPermittedException("You cannot give a feedback for your own book");
         }
 
@@ -41,10 +39,9 @@ public class FeedbackService {
 
     public PageResponse<FeedbackResponse> findAllFeedbacksByBook(Integer bookId, int page, int size, Authentication connectedUser) {
         Pageable pageable = PageRequest.of(page, size);
-        User user = ((User) connectedUser.getPrincipal());
         Page<Feedback> feedbacks = feedbackRepository.findAllByBookId(bookId, pageable);
         List<FeedbackResponse> feedbackResponses = feedbacks.stream()
-                .map((feedback -> feedbackMapper.toFeedbackResponse(feedback, user.getId())))
+                .map((feedback -> feedbackMapper.toFeedbackResponse(feedback, connectedUser.getName())))
                 .toList();
         return new PageResponse<>(
                 feedbackResponses,
