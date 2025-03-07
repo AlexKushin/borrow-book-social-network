@@ -14,9 +14,6 @@ import {KeycloakService} from "../../services/keycloak/keycloak.service";
 })
 export class LoginComponent implements OnInit {
 
-  //authRequest: AuthenticationRequest = {email: '', password: ''};
-  //errorMessage: Array<string> = [];
-
   constructor(
     private keycloakService: KeycloakService
   ) {
@@ -27,29 +24,4 @@ export class LoginComponent implements OnInit {
     await this.keycloakService.login();
   }
 
-  /*login() {
-    this.errorMessage = [];
-    this.authService.authenticate(
-      {
-        body: this.authRequest
-      }
-    ).subscribe({
-      next: (res) => {
-        this.tokenService.token = res.token as string;
-        this.router.navigate(['books']);
-      },
-      error: (err) => {
-        console.log(err);
-        if (err.error.validationErrors) {
-          this.errorMessage = err.error.validationErrors
-        } else {
-          this.errorMessage.push(err.error.businessErrorDescription)
-        }
-      }
-    });
-  }
-
-  register() {
-    this.router.navigate(['register'])
-  }*/
 }
